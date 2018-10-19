@@ -1,0 +1,39 @@
+<script src="/js/yelp_search.js"></script>
+
+
+<div id="home">
+  <div class="container">
+    <div class="row">
+      <div class="col-8 offset-2">
+
+        <h2>This is the yelp search Page!</h2>
+        <form class="clearfix mb-4" action="">
+
+          <div class="form-group">
+            <label for="example-description">Enter name of food truck</label>
+            <input class="form-control" id="foodTruckName" aria-describedby="example-description" placeholder="Enter food truck name"></input>
+          </div>
+          <a href="/api/results" id="submit">Submit</a>
+          {{!-- <a href="/api/results"><button id="submit" class="btn btn-primary float-right">Submit</button></a> --}}
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  $("#submit").on("click", function () {
+    var data = {
+      truck: $("#foodTruckName").val().trim()
+    };
+
+
+    $.ajax("/api/truck", {
+      type: "post",
+      data: data
+    }).then(function () {
+
+    })
+  });
+</script>
