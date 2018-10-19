@@ -3,10 +3,28 @@ var yelpApi = require("../helper/yelpAPIcall")
 
 module.exports = function (app) {
 
-  app.get("/", function (req, res) {
+  app.get("/all", function (req, res) {
+    db.Yelps.findAll({
+      order: [
+        ['id', 'DESC'],
 
-    res.render("yelp_search");
-  });
+    ],
+    }).then(function (data) {
+      // var data = {
+      //   data: results
+      // }
+      console.log("here")
+      console.log(data)
+      res.json(data);
+    });
+  })
+
+
+  
+  // app.get("/", function (req, res) {
+
+  //   res.render("yelp_search", );
+  // });
 
   app.post("/api/truck", function (req, res) {
     var truckName = req.body.truck;
@@ -39,6 +57,14 @@ module.exports = function (app) {
         review_3_author: response.review_3_author,
       }).then(function (result) {
         console.log("saved to database")
+
+        // console.log(result);
+
+        // var data = {
+        //   data: result
+        // }
+        // console.log(data)
+      res.json(result)
       });
     })
   });
@@ -47,15 +73,15 @@ module.exports = function (app) {
 
 // it seems this is being called before the info is stored into the database
 
-  app.get("/api/results", function (req, res) {
-    db.Yelps.findAll({}).then(function (results) {
-      var data = {
-        data: results
-      }
-      console.log(data)
-      res.render("info_page", data);
-    });
-  })
+  // app.get("/api/results", function (req, res) {
+  //   db.Yelps.findAll({}).then(function (results) {
+  //     var data = {
+  //       data: results
+  //     }
+  //     console.log(data)
+  //     res.render("info_page", data);
+  //   });
+  // })
 
 };
 

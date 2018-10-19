@@ -15,8 +15,8 @@ app.use(bodyParser.json());// Middleware
 
 // app.use(express.urlencoded({ extended: false }));
 // app.use(express.json());
-app.use(express.static("public"));
-// app.use(express.static(__dirname + "/public"))
+// app.use(express.static("public"));
+app.use(express.static(__dirname + "/public"))
 
 // Handlebars
 app.engine(
@@ -32,7 +32,7 @@ require("dotenv").config();
 
 // Routes
 require("./routes/apiRoutes")(app);
-require("./routes/yelp-api-routes");
+// require("./routes/yelp-api-routes");
 
 // Helper
 require("./helper/yelpAPIcall");

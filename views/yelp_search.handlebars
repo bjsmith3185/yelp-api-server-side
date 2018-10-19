@@ -13,16 +13,40 @@
             <label for="example-description">Enter name of food truck</label>
             <input class="form-control" id="foodTruckName" aria-describedby="example-description" placeholder="Enter food truck name"></input>
           </div>
-          <a href="/api/results" id="submit">Submit</a>
-          {{!-- <a href="/api/results"><button id="submit" class="btn btn-primary float-right">Submit</button></a> --}}
+          {{!-- <a href="/api/results" id="submit">Submit</a> --}}
+          <button id="submit" class="btn btn-primary float-right">Submit</button>
         </form>
 
       </div>
     </div>
+
+    <br>
+    <div class="row">
+      <div class="col-8 offset-2">
+
+
+        {{#each data}}
+        <div class="result-area text-center">
+          <div>{{name}}</div>
+          <div>{{image_url}}</div>
+          <div>{{category}}</div>
+          <div>{{rating}}</div>
+          <div>{{reviewCount}}</div>
+          <div>{{price}}</div>
+          <div>{{phone}}</div>
+        </div>
+        {{/each}}
+
+      </div>
+    </div>
+
+
   </div>
 </div>
 
 <script>
+  $.get("/");
+
   $("#submit").on("click", function () {
     var data = {
       truck: $("#foodTruckName").val().trim()
